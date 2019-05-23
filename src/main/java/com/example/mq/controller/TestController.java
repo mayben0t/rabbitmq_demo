@@ -15,7 +15,7 @@ public class TestController {
 
     @GetMapping("/hi")
     public String hello(){
-        msgProducer.sendMsg("cross the great wall,we can arrive anywhere on the world");
+        msgProducer.sendMsg("Cross the greatwall,We can reach every corner of the world.");
         return "hi";
     }
 
