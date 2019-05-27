@@ -105,6 +105,8 @@ public class RabbitConfig {
         return BindingBuilder.bind(queueA()).to(defaultExchange()).with(RabbitConfig.ROUTINGKEY_A);
     }
 
+
+
 //    @Bean
 //    public Binding bindingB(){
 //        return BindingBuilder.bind(queueB()).to(defaultExchange()).with(RabbitConfig.ROUTINGKEY_B);
