@@ -23,7 +23,7 @@ public class Consumer_1 {
         channel.exchangeDeclare(CoolUtils.EXCHANGE_NAME, ExchangeTypes.DIRECT);
         Map<String,Object> map = Maps.newHashMap();
         map.put("to","faiz");
-        channel.queueBind(CoolUtils.QUEUE_NAME_A,CoolUtils.EXCHANGE_NAME,"",map);
+        channel.queueBind(CoolUtils.QUEUE_NAME_A,CoolUtils.EXCHANGE_NAME,CoolUtils.ROUTING_KEY_A,null);
         channel.basicQos(1);
 
         Consumer consumer = new DefaultConsumer(channel){

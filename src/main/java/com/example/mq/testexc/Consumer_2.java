@@ -21,7 +21,7 @@ public class Consumer_2 {
         channel.queueDeclare(CoolUtils.QUEUE_NAME_B,false,false,false,null);
         Map<String,Object> map = Maps.newHashMap();
         map.put("from","dream");
-        channel.queueBind(CoolUtils.QUEUE_NAME_B,CoolUtils.EXCHANGE_NAME,"",map);
+        channel.queueBind(CoolUtils.QUEUE_NAME_B,CoolUtils.EXCHANGE_NAME,CoolUtils.ROUTING_KEY_B,null);
 
         final Consumer consumer = new DefaultConsumer(channel){
             @Override

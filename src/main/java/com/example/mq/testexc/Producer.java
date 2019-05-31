@@ -19,7 +19,7 @@ public class Producer {
         Map<String,Object> param = Maps.newHashMap();
         param.put("to","faiz");
         param.put("from","dream");
-        channel.exchangeDeclare(CoolUtils.EXCHANGE_NAME, ExchangeTypes.DIRECT,false,false,param);
+        channel.exchangeDeclare(CoolUtils.EXCHANGE_NAME, ExchangeTypes.DIRECT,false,false,null);
 //        channel.queueDeclare(CoolUtils.QUEUE_NAME_A,false,false,false,null);
 //        channel.queueDeclare(CoolUtils.QUEUE_NAME_A,false,false,false,null);
 
@@ -27,7 +27,8 @@ public class Producer {
         for(int i=0;i<50;i++){
             String msg = "demo test"+i;
             Thread.sleep(i*20);
-            channel.basicPublish(CoolUtils.EXCHANGE_NAME,"",null,msg.getBytes());
+            channel.basicPublish(CoolUtils.EXCHANGE_NAME,CoolUtils.ROUTING_KEY_A,null,msg.getBytes());
+            channel.basicPublish(CoolUtils.EXCHANGE_NAME,CoolUtils.ROUTING_KEY_B,null,msg.concat("这是路由b").getBytes());
             System.out.println("producer has sent:"+msg);
         }
         channel.close();

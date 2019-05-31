@@ -10,6 +10,8 @@ public class CoolUtils {
     public static final String EXCHANGE_NAME = "cool_exchange_direct";
     public static final String QUEUE_NAME_A = "cool_queue_A";
     public static final String QUEUE_NAME_B = "cool_queue_B";
+    public static final String ROUTING_KEY_A = "cool-routing-A";
+    public static final String ROUTING_KEY_B = "cool-routing-B";
 
 
     public static Connection getConnection() throws IOException, TimeoutException {
