@@ -1,5 +1,6 @@
 package com.example.mq.testexc;
 
+import com.google.common.collect.Maps;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -8,6 +9,7 @@ import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
 public class Consumer_2 {
@@ -17,7 +19,9 @@ public class Consumer_2 {
         Connection connection = CoolUtils.getConnection();
         final Channel channel = connection.createChannel();
         channel.queueDeclare(CoolUtils.QUEUE_NAME_B,false,false,false,null);
-        channel.queueBind(CoolUtils.QUEUE_NAME_B,CoolUtils.EXCHANGE_NAME,"");
+        Map<String,Object> map = Maps.newHashMap();
+        map.put("from","dream");
+        channel.queueBind(CoolUtils.QUEUE_NAME_B,CoolUtils.EXCHANGE_NAME,"",map);
 
         final Consumer consumer = new DefaultConsumer(channel){
             @Override

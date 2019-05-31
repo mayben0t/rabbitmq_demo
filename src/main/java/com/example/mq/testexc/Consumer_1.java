@@ -1,13 +1,16 @@
 package com.example.mq.testexc;
 
+import com.google.common.collect.Maps;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
+import org.springframework.amqp.core.ExchangeTypes;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
 public class Consumer_1 {
@@ -17,7 +20,10 @@ public class Consumer_1 {
         Connection connection = CoolUtils.getConnection();
         final Channel channel = connection.createChannel();
         channel.queueDeclare(CoolUtils.QUEUE_NAME_A,false,false,false,null);
-        channel.queueBind(CoolUtils.QUEUE_NAME_A,CoolUtils.EXCHANGE_NAME,"");
+        channel.exchangeDeclare(CoolUtils.EXCHANGE_NAME, ExchangeTypes.DIRECT);
+        Map<String,Object> map = Maps.newHashMap();
+        map.put("to","faiz");
+        channel.queueBind(CoolUtils.QUEUE_NAME_A,CoolUtils.EXCHANGE_NAME,"",map);
         channel.basicQos(1);
 
         Consumer consumer = new DefaultConsumer(channel){
