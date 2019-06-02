@@ -18,7 +18,7 @@ public class Consumer_1 {
 
     public static void main(String[] args) throws IOException, TimeoutException {
         Connection connection = CoolUtils.getConnection();
-        final Channel channel = connection.createChannel();
+        Channel channel = connection.createChannel();
         channel.queueDeclare(CoolUtils.QUEUE_NAME_A,false,false,false,null);
         channel.exchangeDeclare(CoolUtils.EXCHANGE_NAME, ExchangeTypes.DIRECT);
         Map<String,Object> map = Maps.newHashMap();
